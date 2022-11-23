@@ -17,28 +17,35 @@ SERVICE_ACCOUNT:=$$(grep 'serviceAccount:' ./.config/.backend.lock.yml | cut -d 
 GOOGLE_ACCESS_TOKEN:=$$(gcloud auth application-default print-access-token)
 
 all: tf-backend app
-app: check init validate plan apply
-update: check validate plan apply
-update-dev: check validate plan-dev apply
+app: check-install init validate plan apply
+update: check-install validate plan apply
+update-dev: check-install validate plan-dev apply
 
 # .EXPORT_ALL_VARIABLES:
 # GOOGLE_OAUTH_ACCESS_TOKEN = "${GOOGLE_ACCESS_TOKEN}"
 # TF_LOG=DEBUG
 
-.PHONY: check
-check:
+.PHONY: check-install
+check-install:
 	@command -v terraform >/dev/null || ( echo "Terraform is not installed!"; exit 1)
 	@command -v gcloud >/dev/null || ( echo "gcloud CLI is not installed!"; exit 1)
+
+.PHONY: check-local-dev
+check-local-dev:
 	@command -v terraform-docs >/dev/null || ( echo "terraform-docs is not installed!"; exit 1)
 	@command -v python3 >/dev/null || ( echo "python 3.10 is not installed!"; exit 1)
 	@command -v go >/dev/null || ( echo "go 1.16 is not installed!"; exit 1)
 
+.PHONY: check-container-dev
+check-container-dev:
+	@command -v devcontainer >/dev/null || ( echo "devcontainer is not installed!"; exit 1)
+
 .PHONY: dev
-dev:
+dev: check-container-dev
 	devcontainer open
 
 .PHONY: tf-backend
-tf-backend: check
+tf-backend: check-install
 	@./scripts/create_tf_backend.sh
 
 .PHONY: fmt
