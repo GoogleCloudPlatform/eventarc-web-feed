@@ -1,0 +1,36 @@
+{
+    "name": "eventarc-web-feed-devcontainer",
+    "dockerFile": "Dockerfile",
+    "forwardPorts": [8085],
+    "extensions": [
+        "dbaeumer.vscode-eslint",
+        "golang.Go",
+        "hashicorp.terraform",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "HookyQR.beautify"
+    ],
+    "mounts": [
+        "source=${localEnv:HOME}/.config/gcloud,target=${containerEnv:HOME}/.config/gcloud,type=bind,consistency=cached"
+    ],
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:1": {
+            "version": "latest",
+            "installZsh": true,
+            "installOhMyZsh": true,
+            "upgradePackages": true,
+            "username": "vscode"
+        },
+        "ghcr.io/devcontainers/features/go:1": {
+            "version": "1.16"
+        },
+        "ghcr.io/devcontainers/features/python:1": {
+            "version": "3.10"
+        }
+    },
+    "onCreateCommand": {
+        "configureTF": "tfswitch --chdir terraform",
+        "updatePath": "echo 'export PATH=$PATH:$HOME/bin' >> ~/.zshrc",
+        "installTerraformDocs": "GO111MODULE='on' go get github.com/terraform-docs/terraform-docs@v0.16.0"
+    }
+}
