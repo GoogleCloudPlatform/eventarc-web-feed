@@ -6,7 +6,7 @@ Web syndication is a form of syndication in which content is made available from
   
 In recent years, we have seen the rise of event-driven architectures. This architectural pattern may be applied by the design and implementation of applications and systems that transmit events among loosley coupled software componenets and services. Event-driven systems typically consist of event producers, event routers, and event consumers. Producers publish events to routers, which then are responsible for delivering them to consumers. In 2019, the CNCF released v1.0 of the [CloudEvents](https://github.com/cloudevents/spec) spec/protocol, which intends to standardize a specification for describing event data in common formats to provide interoperability across services, platforms and systems. 
   
-This project serves as a bridge between existing legacy web feed formats such as RSS, Atom, and JSON, and the more modern CloudEvents spec. It intends to enable the development of event-driven systems that react to legacy web feed events.
+This project serves as a bridge between existing legacy web feed formats such as RSS, Atom, and JSON, and the more modern CloudEvents spec via Google Cloud Eventarc. It intends to enable the development of event-driven systems that react to legacy web feed events.
   
 # Google Disclaimer
 This is not an officially supported Google product
