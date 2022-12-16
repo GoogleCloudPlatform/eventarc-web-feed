@@ -27,7 +27,7 @@
     },
     "onCreateCommand": {
         "configureTF": "tfswitch --chdir terraform",
-        "updatePath": "echo 'export PATH=$PATH:$HOME/bin' >> ~/.zshrc",
+        "updatePath": "echo 'export PATH=$PATH:$HOME/bin' >> ~/.zshrc && source ~/.zshrc",
         "installTerraformDocs": "GO111MODULE='on' go get github.com/terraform-docs/terraform-docs@v0.16.0"
     }
 }
