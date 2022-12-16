@@ -50,13 +50,13 @@ The Org Policy constraints which could prevent this solution from being deployed
 export GITHUB_PROJECT_NAME="eventarc-web-feed"
 export GCP_PROJECT_ID="REPLACE_ME"
 
-git clone git@github.com:noahmercado/${GITHUB_PROJECT_NAME}.git
+git clone git@github.com:GoogleCloudPlatform/${GITHUB_PROJECT_NAME}.git
 
 cd ${GITHUB_PROJECT_NAME}
 
 # If deploying using the devcontainer, run `devcontainer open` to open a new VS Code workspace inside the devcontainer
 
-# Review the default configuration in config.tfvars and modify as needed (review the README in terraform/ to see input options)
+# Review the default configuration in config.tfvars and modify as needed (please review the README in terraform/ to see input options)
 # Additinoal configuration examples can be found in ./examples
 
 # Log in to gcloud cli 
@@ -73,7 +73,7 @@ make app
 ```
 
 ## Architecture
-![Architecture](assets/eventarc-web-feed.png "Architecture")
+![Architecture](assets/eventarc_web_feed.drawio-0.png "Architecture")
 
 ## Subscribers
 Learn more about feed subscribers at [./src/subscribers/README.md](./src/subscribers/README.md) 

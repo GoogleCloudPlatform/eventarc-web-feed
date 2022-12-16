@@ -14,11 +14,11 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_archive"></a> [archive](#provider\_archive) | 2.2.0 |
-| <a name="provider_google"></a> [google](#provider\_google) | 4.41.0 |
-| <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | 4.26.0 |
-| <a name="provider_null"></a> [null](#provider\_null) | 3.2.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.4.3 |
+| <a name="provider_archive"></a> [archive](#provider\_archive) | ~> 2.2.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | ~> 4.41.0 |
+| <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | ~> 4.26.0 |
+| <a name="provider_null"></a> [null](#provider\_null) | ~> 3.2.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | ~> 3.4.3 |
 
 ## Modules
 
@@ -62,10 +62,10 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_create_firestore"></a> [create\_firestore](#input\_create\_firestore) | Boolean to control creation of Firestore Database as only one App Engine application can exist per project. Set to false if you're already setup Firestore in this project. | `bool` | `true` | no |
-| <a name="input_feeds"></a> [feeds](#input\_feeds) | A list of Feed config options | <pre>list(object({<br>    url         = string<br>    type        = string<br>    name        = string<br>    subscribers = optional(list(string), []) # A list of subscriber names (custom processors) to subscribe to this feed. Must actually exist as directory in /src/subscribers/ which will automatically get deployed as a python310 cloud function v2 when configured via the `subscribers` variable<br>    schedule    = optional(string, "*/5 * * * *")<br>  }))</pre> | `[]` | no |
-| <a name="input_region"></a> [region](#input\_region) | The GCP region to deploy resources into [Default = us-central] | `string` | `"us-central1"` | no |
+| <a name="input_feeds"></a> [feeds](#input\_feeds) | A list of Feed config options | <pre>list(object({<br>    url         = string<br>    type        = string<br>    name        = string<br>    subscribers = optional(list(string), []) # A list of subscriber names (custom processors) to subscribe to this feed. Must actually have been declared and configured via the `subscribers` variable<br>    schedule    = optional(string, "*/5 * * * *")<br>  }))</pre> | `[]` | no |
+| <a name="input_region"></a> [region](#input\_region) | The GCP region to deploy resources into [Default = us-central1] | `string` | `"us-central1"` | no |
 | <a name="input_secrets"></a> [secrets](#input\_secrets) | Map of secret name to secret value to store in Secrets Manager | <pre>list(object({<br>    name  = string<br>    value = string<br>  }))</pre> | `[]` | no |
-| <a name="input_subscribers"></a> [subscribers](#input\_subscribers) | List of subscriber configuration objects | <pre>list(object({<br>    name                  = string<br>    secrets               = optional(list(string), []) # List of Secret Manager secret names to expose to subscriber as environment variables. Must match an actual secret name listed in the `secrets` variable <br>    available_memory      = optional(string, "128Mi")  # The amount of memory to allocate to the subscrier<br>    timeout_seconds       = optional(number, 60)       # The timeout, in seconds<br>    max_instance_count    = optional(number, 100)      # Max number of concurrent instances of the subscriber<br>    environment_variables = optional(map(string), {})  # Additional environment variables to pass to the subscriber<br>  }))</pre> | `[]` | no |
+| <a name="input_subscribers"></a> [subscribers](#input\_subscribers) | List of subscriber configuration objects. Please see the [subscribers documentation](/src/subscribers/README.md) | <pre>list(object({<br>    name                  = string                     # Must exist as a directory in ./src/subscribers/. Code located at ./src/subscribers/{name} will automatically get deployed as a Python310 Cloud Function v2"<br>    available_memory      = optional(string, "128Mi")  # The amount of memory to allocate to the subscrier<br>    timeout_seconds       = optional(number, 60)       # The timeout, in seconds<br>    max_instance_count    = optional(number, 100)      # Max number of concurrent instances of the subscriber<br>    secrets               = optional(list(string), []) # List of Secret Manager secret names to expose to subscriber as environment variables. Must match an actual secret name listed in the `secrets` variable <br>    environment_variables = optional(map(string), {})  # Additional environment variables to pass to the subscriber<br>  }))</pre> | `[]` | no |
 
 ## Outputs
 

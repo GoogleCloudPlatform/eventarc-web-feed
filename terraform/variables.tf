@@ -13,7 +13,7 @@
 # limitations under the License.
 
 variable "region" {
-  description = "The GCP region to deploy resources into [Default = us-central]"
+  description = "The GCP region to deploy resources into [Default = us-central1]"
   type        = string
   default     = "us-central1"
 }
@@ -34,13 +34,13 @@ variable "secrets" {
 }
 
 variable "subscribers" {
-  description = "List of subscriber configuration objects"
+  description = "List of subscriber configuration objects. Please see the [subscribers documentation](/src/subscribers/README.md)"
   type = list(object({
-    name                  = string
-    secrets               = optional(list(string), []) # List of Secret Manager secret names to expose to subscriber as environment variables. Must match an actual secret name listed in the `secrets` variable 
+    name                  = string                     # Must exist as a directory in ./src/subscribers/. Code located at ./src/subscribers/{name} will automatically get deployed as a Python310 Cloud Function v2"
     available_memory      = optional(string, "128Mi")  # The amount of memory to allocate to the subscrier
     timeout_seconds       = optional(number, 60)       # The timeout, in seconds
     max_instance_count    = optional(number, 100)      # Max number of concurrent instances of the subscriber
+    secrets               = optional(list(string), []) # List of Secret Manager secret names to expose to subscriber as environment variables. Must match an actual secret name listed in the `secrets` variable 
     environment_variables = optional(map(string), {})  # Additional environment variables to pass to the subscriber
   }))
   default = []
@@ -58,7 +58,7 @@ variable "feeds" {
     url         = string
     type        = string
     name        = string
-    subscribers = optional(list(string), []) # A list of subscriber names (custom processors) to subscribe to this feed. Must actually exist as directory in /src/subscribers/ which will automatically get deployed as a python310 cloud function v2 when configured via the `subscribers` variable
+    subscribers = optional(list(string), []) # A list of subscriber names (custom processors) to subscribe to this feed. Must actually have been declared and configured via the `subscribers` variable
     schedule    = optional(string, "*/5 * * * *")
   }))
 

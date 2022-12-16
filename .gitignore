@@ -20,6 +20,6 @@ tfplan
 .terraform-docs.yml.bk
 .gcp-service-health.config.tfvars
 
-# Once forked into your own repository, these can be commented out and be commited to source control
+# Once forked into your own repository, these should be commented out and be commited to source control
 .backend.lock.yml
 .terraform.lock.hcl

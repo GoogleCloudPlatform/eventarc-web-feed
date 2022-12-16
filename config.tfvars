@@ -26,5 +26,5 @@ subscribers = []
 
 # List of secret configuration objects
 # The `secrets` list(string) variable should ideally be set using the TF_VAR_ syntax to avoid committing it to version control
-# https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#private_cp
+# https://developer.hashicorp.com/terraform/language/values/variables#environment-variables
 secrets = []
