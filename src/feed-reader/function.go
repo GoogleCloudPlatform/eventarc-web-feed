@@ -171,6 +171,7 @@ func (p *FeedReaderPayload) Publish(e NewEvents) error {
 			Data: data,
 			Attributes: map[string]string{
 				"origin": p.CachePath,
+				"feed":   p.Feed,
 			},
 		})
 
