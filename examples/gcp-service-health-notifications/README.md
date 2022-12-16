@@ -1,5 +1,5 @@
 # GCP Service Health Notifications
-This example configuration builds a datapipeline for monitoring the GCP Service Health RSS Feed and notifying "subscribers". It deploys the prebuilt "slack-publisher" subscriber which can be used with publish notifications to a Slack webhook.
+This example configuration builds a datapipeline for monitoring the GCP Service Health RSS Feed and notifying "subscribers". It deploys the prebuilt "slack-publisher" subscriber which can be used to publish notifications to a Slack webhook.
 
 ## How to deploy
 ```bash
