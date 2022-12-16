@@ -68,7 +68,7 @@ gcloud config set project ${GCP_PROJECT_ID}
 # Prepare the GCP project
 make tf-backend
 
-# Deploy the web App
+# Deploy
 make app
 ```
 
