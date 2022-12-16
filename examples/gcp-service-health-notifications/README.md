@@ -7,7 +7,7 @@ This example configuration builds a datapipeline for monitoring the GCP Service 
 export GITHUB_PROJECT_NAME="eventarc-web-feed"
 export GCP_PROJECT_ID="REPLACE_ME"
 
-git clone git@github.com:noahmercado/${GITHUB_PROJECT_NAME}.git
+git clone git@github.com:GoogleCloudPlatform/${GITHUB_PROJECT_NAME}.git
 
 cd ${GITHUB_PROJECT_NAME}
 
