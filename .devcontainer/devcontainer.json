@@ -10,9 +10,6 @@
         "ms-python.vscode-pylance",
         "HookyQR.beautify"
     ],
-    "mounts": [
-        "source=${localEnv:HOME}/.config/gcloud,target=${containerEnv:HOME}/.config/gcloud,type=bind,consistency=cached"
-    ],
     "features": {
         "ghcr.io/devcontainers/features/common-utils:1": {
             "version": "latest",
