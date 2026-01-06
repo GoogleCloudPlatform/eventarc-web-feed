@@ -66,8 +66,8 @@ function disable_policies() {
 
 function create_bucket() {
     echo "Creating bucket ${BUCKET_NAME_WITH_PROTO} in ${PROJECT_ID} within us-central1 ..."
-    gsutil mb -c standard -b on -l us-central1 $BUCKET_NAME_WITH_PROTO  > /dev/null 2>&1 && \
-        gsutil versioning set on $BUCKET_NAME_WITH_PROTO
+    gcloud storage buckets create $BUCKET_NAME_WITH_PROTO --default-storage-class=standard --uniform-bucket-level-access --location=us-central1  > /dev/null 2>&1 && \
+        gcloud storage buckets update --versioning $BUCKET_NAME_WITH_PROTO
 }
 
 function create_service_account() {
